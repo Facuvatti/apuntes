@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/styles.css">
+        <link rel="stylesheet" href="/hamburger.css">
+        <link rel="stylesheet" href="./tabla.css">
+        <title>CLI: Interfaz de linea de comandos</title>
+    </head>
+    <body>
+        <header>
+            <label class="burger" for="burger">
+                <input type="checkbox" id="burger">
+                <nav>
+                    <ul>
+                        <li title="Git y github"><a href="./git.html">GESTION DE VERSIONES</a></li>
+                        <li title="HTML, CSS Y JAVASCRIPT"><a href="./desarrollo.html">DESARROLLO WEB</a></li>
+                        <li title="REACT"><a href = "react.html">FRONTEND</a></li>
+                        <li title="Creación de API (EXPRESS)"><a href="./backend.html">BACKEND</a></li>
+                    </ul>
+                </nav>
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <ul>
+            <li><a href="/index.html">INICIO</a></li>
+            <li><a href="/algoritmos.html">ALGORITMOS</a></li>
+            <li><a href="/bd.html">BASE DE DATOS</a></li>
+            <li><a href="/organizacion.html">ORGANIZACIÓN DE COMPUTADORAS</a></li>
+            <li title="Programación orientada a objetos"><a href="/poo.html">POO</a></li>
+            </ul>
+        </header>
+        <div class="container">
+            <h1>Proyecto informatico</h1>
+        </div>
+        <div class="container tablewrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>WINDOWS (CMD / PowerShell)</th>
+                        <th>LINUX (Bash)</th>
+                        <th>QUÉ HACE</th>
+                        <th>EJEMPLO BATCH</th>
+                        <th>EJEMPLO BASH</th>
+                        <th>Aclaraciones y utilidades</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="2"><code>mkdir [opciones] [nombre]</code></td>
+                        <td>Crea un directorio hijo en el directorio actual</td>
+                        <td><code>C:\&gt; mkdir la35</code></td>
+                        <td><pre>facu@DESKTOP:~$ mkdir la35<br>
+                        facu@DESKTOP:~$ mkdir -p proyectos/pagina/src
+                        </pre></td>
+                        <td>
+                            Regla mnemotécnica: <code>mkdir</code> = <em>make directory</em><br>
+                            La opción <code>-p</code> permite crear subcarpetas ademas de crear las otras carpetas
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2"><a href="https://www.w3schools.com/bash/bash_cd.php" target="_blank"><code class="hoverable">cd [ruta | carpeta]</code></a></td>
+                        <td>Navega hacia una carpeta</td>
+                        <td>
+                            <pre>C:\&gt; cd la35<br>
+                            C:\&gt; cd C:\la35<br>
+                            C:\&gt; cd "Archivos de programa"<br>
+                            C:\Archivos de programa\Google&gt; cd ..<br>
+                            C:\&gt; cd /
+                            </pre>
+                        </td>
+                        <td>
+                            <pre>facu@DESKTOP:~$ cd la35 (por directorio)<br>
+                            facu@DESKTOP:~$ cd /home/facu/la35 (por ruta absoluta)<br>
+                            facu@DESKTOP:~$ cd "Archivos de programa"<br>
+                            facu@DESKTOP:/home/facu/Google/Chrome$ cd ..<br>
+                            facu@DESKTOP:~$ cd /
+                            </pre>
+                        </td>
+                        <td>
+                            Carpetas con espacios → usar comillas<br>
+                            <code>..</code> vuelve una carpeta atrás<br>
+                            <code>/</code> lleva a la raíz
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>(No es nativo)</td>
+                        <td><code>touch archivo</code></td>
+                        <td>Crea un archivo vacío o actualiza su fecha</td>
+                        <td></td>
+                        <td><code>touch archivo.txt</code></td>
+                        <td>Crea el archivo en la ruta actual</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>dir</code></td>
+                        <td><a href="https://www.w3schools.com/bash/bash_ls.php" target="_blank" ><code class="hoverable">ls [opciones]</code></a></td>
+                        <td>Lista archivos y carpetas</td>
+                        <td>
+                            <pre>C:\Archivos de programa> dir Google<br>
+                                El volumen de la unidad C no tiene etiqueta.<br>
+                                El número de serie del volumen es: 382F-AFE8<br>
+                                Directorio de C:\Archivos de programa\Google<br>
+                                26/11/2024  12:56    &lt;DIR&gt;          .<br>
+                                26/11/2024  12:56    &lt;DIR&gt;          ..<br>
+                                12/10/2025  11:11    &lt;DIR&gt;          Chrome<br>
+                                08/10/2025  04:15    &lt;DIR&gt;          Drive File Stream<br>
+                                0 archivos              0 bytes<br>
+                                4 dirs  65.083.973.632 bytes libres
+                            </pre>
+                        </td>
+                        <td>
+                            <pre>facu@DESKTOP-LC9706B:-$ ls -la<br>
+                            drwxr-xr-x  3 facu facu 96 Oct 13 14:30 .<br>
+                            drwxr-xr-x 13 facu facu 416 Oct 13 14:29 ..<br>
+                            -rw-r--r--  1 facu facu   0 Oct 13 14:30 .config<br>
+                            -rw-r--r--  1 facu facu   0 Oct 13 14:30 archivo.txt
+                            </pre>
+                            
+                        </td>
+                        <td>
+                            <code>-l</code>: detalles<br>
+                            <code>-a</code>: ocultos<br>
+                            <code>-h</code>: tamaño legible<br>
+                            <code>-t</code>: orden por hora de modificación<br>
+                            <code>-r</code>: orden inverso<br>
+                            <code>-R</code>: recursividad<br>
+                            <code>-S</code>: orden por tamaño de archivo<br>
+                            <code>-1</code>: Enumera un archivo por línea<br>
+                            <code>-d</code>: solo carpetas<br>
+                            <code>-F</code>: agrega caracteres para indicar que es cada cosa (/ para directorios, * para archivos, etc.)<br>
+                            Se pueden combinar: <code>-lahtrRS1</code>
+                    
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><code>cd</code></td>
+                        <td><code>pwd</code></td>
+                        <td>Muestra la ruta actual</td>
+                        <td><code>C:\Archivos de programa</code></td>
+                        <td><code>/home/facu/Desktop</code></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2"><code>echo [texto]</code></td>
+                        <td>Muestra texto o lo guarda en un archivo</td>
+                        <td><code>echo "Hola mundo"</code></td>
+                        <td><code>echo "contenido" &gt; archivo.txt</code></td>
+                        <td>Si no existe, el archivo se crea</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>cls</code></td>
+                        <td><code>clear</code></td>
+                        <td>Limpia la terminal</td>
+                        <td colspan="2"></td>
+                        <td>Atajo: <code>Ctrl + L</code></td>
+                    </tr>
+
+                    <tr>
+                        <td><code>type archivo</code></td>
+                        <td><code>cat archivo</code></td>
+                        <td>Muestra el contenido de un archivo</td>
+                        <td><code>type archivo.txt</code></td>
+                        <td><code>cat archivo.txt</code></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>¿Qué es una ruta?</td>
+                        <td colspan="2">Es el camino completo hasta una carpeta</td>
+                        <td colspan="3"><code>C:\Escritorio\proyecto\pagina</code></td>
+                    </tr>
+
+                    <tr>
+                        <td>Ruta relativa</td>
+                        <td colspan="2">
+                            Parte desde el directorio actual
+                        </td>
+                        <td colspan="3">
+                            Estoy en <code>C:\Escritorio\proyecto</code><br>
+                            Uso <code>cd pagina</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ruta absoluta</td>
+                        <td colspan="2">Empieza desde la raíz</td>
+                        <td colspan="3">
+                            Linux: <code>/usr/bin</code><br>
+                            Windows: <code>C:\Archivos de programa</code>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </body>
+</html>

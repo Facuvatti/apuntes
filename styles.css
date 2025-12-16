@@ -1,0 +1,621 @@
+:root {
+    --primary-color: #0ea5e9;
+    --primary-light: #38bdf8;
+    --primary-lighter: #7dd3fc;
+    --primary-lightest: #bae6fd;
+    
+    --bg-dark: #0f1220;
+    --bg-medium: #171a2e;
+    --bg-light: #1f2340;
+    --bg-tooltip: #1e293b;
+    
+    --border-color: #334155;
+    --border-light: #475569;
+    
+    --text-primary: #e0f2fe;
+    --text-secondary: #c8edfd;
+    --text-hover: #ffffff;
+    
+    --shadow-sm: 0 2px 8px rgba(14, 165, 233, 0.15);
+    --shadow-md: 0 4px 12px rgba(14, 165, 233, 0.2);
+    
+    --gradient-opacity-1: 0.15;
+    --gradient-opacity-2: 0.08;
+    --gradient-hover-1: 0.25;
+    --gradient-hover-2: 0.15;
+}
+* {
+    box-sizing: border-box;
+}
+a {
+    color : #eaeaf0;
+    text-decoration: none;
+}
+code {
+    font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+    font-size: 1em;
+    background-color: #1e1e1e;
+    color: #e6edf3;
+    padding: 0.15em 0.35em;
+    border-radius: 4px;
+    border: 1px solid #2a2a2a;
+    white-space: inherit;
+}   
+/* Header y navegación */
+header {
+    background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-light) 100%);
+    padding: 0;
+    margin: -32px -32px 32px -32px; /* Extiende hasta los bordes */
+    border-bottom: 2px solid var(--primary-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+header ul {
+    list-style: none;
+    margin: 0;
+    margin-left: 24px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+header li {
+    margin: 0;
+}
+
+header a {
+    display: block;
+    padding: 18px 24px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    border-radius: 8px;
+}
+
+/* Efecto hover con underline animado */
+header a::after {
+    content: '';
+    position: absolute;
+    bottom: 12px;
+    left: 24px;
+    right: 24px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+header a:hover {
+    color: #ffffff;
+    background-color: var(--bg-light);
+}
+
+header a:hover::after {
+    transform: scaleX(1);
+}
+
+/* Indicador de página activa */
+header a.active {
+    background-color: var(--primary-light);
+    color: var(--text-primary);
+}
+
+header a.active::after {
+    transform: scaleX(1);
+    background: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header {
+        margin: -16px -16px 24px -16px;
+    }
+    
+    header ul {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    header a {
+        width: 100%;
+        text-align: center;
+        padding: 14px 20px;
+    }
+    
+    header a::after {
+        left: 20px;
+        right: 20px;
+        bottom: 10px;
+    }
+}
+
+/* Variante con botones más marcados (opcional) */
+@media (min-width: 769px) {
+    header ul {
+        padding: 12px 24px;
+    }
+}
+body {
+    margin: 0;
+    padding: 32px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1 {
+    font-size: 2.4rem;
+    margin-bottom: 32px;
+    border-bottom: 2px solid var(--border-light);
+    padding-bottom: 12px;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    transform: translateX(0);
+    transition:
+        transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+    will-change: transform;
+}
+.section {
+    margin: 28px;
+    padding: 24px;
+    background-color: var(--bg-medium);
+    border-radius: 12px;
+    width: 100%;
+    height: 100%;
+}
+.hoverable {
+    border: 1px solid var(--primary-light);
+}
+.hoverable:hover {
+    border: 2px solid var(--primary-lighter);
+    
+}
+h2 {
+    font-size: 1.8rem;
+    margin-top: 0;
+    margin-bottom: 24px;
+    color: var(--text-secondary);
+    border-left: 4px solid var(--border-color);
+    padding-left: 12px;
+}
+
+.subsection {
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: var(--bg-light);
+    border-radius: 10px;
+
+}
+.mermaid {
+    /* Puedes darles un ancho fijo o mínimo */
+
+    /* O permitir que crezcan si hay espacio */
+    flex-grow: 1; 
+    margin: 24px
+}
+.mindmaps {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+h3 {
+    font-size: 1.4rem;
+    margin-top: 0;
+    margin-bottom: 16px;
+    color: #cdd6ff;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #0d1117;
+    color: #e6edf3;
+    font-family: sans-serif;
+    font-size: 0.95rem;
+    margin-bottom: 50px;
+}
+.tablewrapper{
+    max-height: 500px;
+}
+/* Encabezados */
+thead th {
+    background-color: #161b22;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+    box-shadow: inset 0 -2px 0 #30363d;
+    position: sticky;
+    top: 90px;
+    z-index: 2;
+    padding: 0.75em;
+    line-height: 1.5;
+}
+
+/* Celdas */
+td {
+    border: 1px solid #30363d;
+    padding: 0.75em;
+    vertical-align: top;
+    line-height: 1.5;
+}
+
+pre {
+    background-color: #1e1e1e !important; 
+    border: 1px solid #2a2a2a; 
+    width: 40vw;
+    border-left: 4px solid var(--primary-color); 
+    color: #e6edf3; 
+    font-family: monospace; 
+    border-radius: 4px;
+    font-size: 1em;
+    padding: 1em; 
+    margin: 20px 0; 
+    white-space: pre-wrap;  
+    word-break: break-word; 
+    overflow-x: hidden;  
+}
+/* Ajuste para tablas grandes */
+@media (max-width: 900px) {
+    table {
+        font-size: 0.85rem;
+    }
+}
+@media (max-width: 768px) {
+    body {
+        padding: 16px;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+    h3 {
+        font-size: 1.25rem;
+    }
+}
+/* Contenedor del índice */
+.index-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 32px;
+    background: linear-gradient(135deg, var(--bg-medium) 0%, var(--bg-light) 100%);
+    border-radius: 16px;
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-md);
+}
+
+/* Lista ordenada del índice */
+.index-container ol {
+    list-style: none;
+    counter-reset: index-counter;
+    padding: 0;
+    margin: 0;
+}
+
+/* Items de la lista */
+.index-container li {
+    counter-increment: index-counter;
+    margin-bottom: 20px;
+    padding: 20px 24px;
+    background-color: var(--bg-dark);
+    border-radius: 12px;
+    border-left: 3px solid var(--primary-color);
+    position: relative;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Efecto hover en items */
+.index-container li:hover {
+    transform: translateX(6px);
+    border-left-color: var(--primary-light);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Números de la lista */
+.index-container li::before {
+    content: counter(index-counter);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--primary-light);
+    min-width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, 
+        rgba(100, 116, 139, var(--gradient-opacity-1)), 
+        rgba(148, 163, 184, var(--gradient-opacity-2)));
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+/* Efecto hover en números */
+.index-container li:hover::before {
+    background: linear-gradient(135deg, 
+        rgba(100, 116, 139, var(--gradient-hover-1)), 
+        rgba(148, 163, 184, var(--gradient-hover-2)));
+    color: var(--primary-lighter);
+    transform: scale(1.08);
+    border-color: var(--primary-color);
+}
+
+/* Contenedor del texto */
+.index-container li > * {
+    flex: 1;
+}
+
+/* Enlaces del índice */
+.index-container a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    display: block;
+}
+
+.index-container a:hover {
+    color: var(--text-hover);
+}
+
+/* Items sin enlace (solo texto) */
+.index-container li:not(:has(a)) {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: help;
+}
+
+/* Tooltip para items con title */
+.index-container li[title] {
+    position: relative;
+}
+
+.index-container li[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 12px);
+    transform: translateX(-50%);
+    background-color: var(--bg-tooltip);
+    color: var(--text-primary);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    z-index: 10;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .index-container {
+        padding: 20px;
+        margin: 24px 16px;
+    }
+    
+    .index-container li {
+        padding: 16px 20px;
+        gap: 16px;
+    }
+    
+    .index-container li::before {
+        min-width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+    
+    .index-container a,
+    .index-container li:not(:has(a)) {
+        font-size: 1rem;
+    }
+    
+    .index-container li[title]:hover::after {
+        left: 20px;
+        right: 20px;
+        transform: none;
+        white-space: normal;
+    }
+}
+.highlight {
+    background-color: rgb(114, 102, 45);
+}
+
+
+.margin-box {
+    background: linear-gradient(135deg, #a8b5d1 0%, #8fa3c7 100%);
+    padding: 50px;
+    border-radius: 8px;
+    position: relative;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+/* MARGIN se agranda cuando tiene hover directo */
+.margin-box:hover {
+    transform: scale(1.05);
+}
+.margin-box:hover > .border-box, 
+.margin-box:hover > .border-box > .padding-box, 
+.margin-box:hover > .border-box > .padding-box > .content-box {
+    transform: scale(0.95);
+} 
+
+/* MARGIN se achica cuando cualquier hijo tiene hover */
+.margin-box:has(.border-box:hover),
+.margin-box:has(.padding-box:hover),
+.margin-box:has(.content-box:hover) {
+    transform: scale(1);
+    border: none;
+}
+
+.margin-label {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #2c3e50;
+    font-weight: bold;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.border-box {
+    background: linear-gradient(135deg, #5b8fd6 0%, #4a7bc4 100%);
+    padding: 50px;
+    border-radius: 8px;
+    position: relative;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+/* BORDER se agranda cuando tiene hover directo */
+.margin-box:hover > .border-box:hover {
+    transform: scale(1.08);
+}
+.margin-box:hover > .border-box:hover > .padding-box {
+    transform: scale(0.9) !important;
+}
+.margin-box:hover > .border-box:hover > .padding-box:hover{
+    transform: scale(1.08) !important;
+}
+.border-box:hover:has(.padding-box:hover) {
+    transform: scale(1);
+}
+.border-box:hover > .padding-box:hover {
+    transform: scale(1.08);
+}
+.border-box:hover > .padding-box:hover > .content-box {
+    transform: scale(0.9);
+}
+/* BORDER se achica cuando el padre (margin) tiene hover */
+.margin-box:hover > .border-box {
+    transform: scale(1);
+}
+
+
+.border-label {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.padding-box {
+    background: linear-gradient(135deg, #d4e4f7 0%, #c5d9f2 100%);
+    padding: 50px;
+    border-radius: 8px;
+    position: relative;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+/* PADDING se agranda cuando tiene hover directo */
+.padding-box:hover {
+    transform: scale(1.05);
+}
+
+/* PADDING se achica cuando el hijo (content) tiene hover */
+.padding-box:has(.content-box:hover) {
+    transform: scale(1);
+}
+
+/* PADDING se achica cuando cualquier padre tiene hover */
+.margin-box:hover .padding-box,
+.border-box:hover > .padding-box {
+    transform: scale(1);
+}
+
+/* Cancelar el achique del padding cuando él mismo tiene hover */
+.padding-box:hover {
+    transform: scale(1.05) !important;
+}
+
+.padding-label {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #2c3e50;
+    font-weight: bold;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.content-box {
+    background: white;
+    border: 3px solid #2c3e50;
+    padding: 60px 80px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+/* CONTENT se agranda cuando tiene hover directo */
+.content-box:hover {
+    transform: scale(1.08);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* CONTENT se achica cuando cualquier padre tiene hover */
+.margin-box:hover .content-box,
+.border-box:hover .content-box,
+.padding-box:hover > .content-box {
+    transform: scale(0.95);
+}
+
+/* Cancelar el achique del content cuando él mismo tiene hover */
+.content-box:hover {
+    transform: scale(1.08) !important;
+}
+
+.content-label {
+    color: #2c3e50;
+    font-weight: bold;
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}

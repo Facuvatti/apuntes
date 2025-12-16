@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/hamburger.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"> 
+        <link rel="stylesheet" href="/styles.css">
+        <title>DESARROLLO WEB: CSS</title>
+    </head>
+    <body>
+        <header>
+            <label class="burger" for="burger">
+                <input type="checkbox" id="burger">
+                <nav>
+                    <ul>
+                        <li><a href="./html.html">HTML</a></li>
+                        <li><a href="./js.html">JAVASCRIPT</a></li>
+                    </ul>
+                </nav>
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <ul>
+            <li><a href="/index.html">INICIO</a></li>
+            <li><a href="/algoritmos.html">ALGORITMOS</a></li>
+            <li><a href="/bd.html">BASE DE DATOS</a></li>
+            <li><a href="/organizacion.html">ORGANIZACIÓN DE COMPUTADORAS</a></li>
+            <li title="Programación orientada a objetos"><a href="/poo.html">POO</a></li>
+            </ul>
+        </header>
+        <div class="container">
+        <h1>Proyecto informatico</h1>
+        </div>
+        <div class="section container" style="width: 80vw;">
+            <p>En el archivo principal <code>index.html</code>, hay que conectar el archivo .css en el <code>head</code>
+                para que hagan efecto los estilos.
+            </p>
+            <pre class="language-html"><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+    &lt;title&gt;Mi primer pagina&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Mi primer pagina&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        </div>
+        <div class="section container" style="width: 80vw;">
+            <div class="margin-box">
+                <span class="margin-label">MARGIN</span>
+                <div class="border-box">
+                    <span class="border-label">BORDER</span>
+                    <div class="padding-box">
+                        <span class="padding-label">PADDING</span>
+                        <div class="content-box">
+                            <span class="content-label">CONTENT</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h1 style="border: 1px solid black; margin-left: 1em;" class="changable">MODIFICÁ EL ESTILO DE ESTE TITULO</h1>
+                <form style="padding-left: 2em;">
+                    <input type="text" name="padding" placeholder="PADDING" id="padding"></input>
+                    <input type="text" name="margin" placeholder="MARGIN" id="margin"></input>
+                    <input type="text" name="border" placeholder="BORDER" id="border"></input>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+        <script>
+            hljs.highlightAll();
+            let code = document.querySelector("pre code");
+            setTimeout(() => {
+                let children = code.children;
+                for(child in children) {
+                    if(["2","5","8"].includes(child)) {
+                        console.log(child);
+                        children[child].classList.add("highlight");
+                    }
+                }
+            }, 1000);
+        </script>
+        <script src="./css/main.js"></script>
+    </body>
+</html>

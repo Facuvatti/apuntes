@@ -1,0 +1,130 @@
+nav {
+    position: fixed;
+    top: 90px;
+    left: -300px; /* Oculto por defecto */
+    width: 300px;
+    height: 100vh;
+    background: black;
+    padding-top: 80px;
+    transition: left 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+    z-index: -1;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    flex-flow: column;
+}
+
+nav ul li {
+    margin: 0;
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    width: 90%;
+}
+.burger {
+    position: relative;
+    width: 40px;
+    height: 30px;
+    background: transparent;
+    cursor: pointer;
+    display: block;
+    margin-left: 2em;
+}
+
+.burger input {
+    display: none;
+}
+
+.burger span {
+    display: block;
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    background: white;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+}
+
+.burger span:nth-of-type(1) {
+    top: 0px;
+    transform-origin: left center;
+}
+
+.burger span:nth-of-type(2) {
+    top: 50%;
+    transform: translateY(-50%);
+    transform-origin: left center;
+}
+
+.burger span:nth-of-type(3) {
+    top: 100%;
+    transform-origin: left center;
+    transform: translateY(-100%);
+}
+
+.burger input:checked ~ span:nth-of-type(1) {
+    transform: rotate(45deg);
+    top: 0px;
+    left: 5px;
+}
+
+.burger input:checked ~ span:nth-of-type(2) {
+  width: 0%;
+  opacity: 0;
+}
+
+.burger input:checked ~ span:nth-of-type(3) {
+  transform: rotate(-45deg);
+  top: 28px;
+  left: 5px;
+}
+.burger input:checked ~ nav {
+  left: 0px;  /* Muestra el menu desplegado */
+  transition-delay: 0.1s;
+}
+.burger input:checked ~ nav ul li {
+    transform: translateX(0);
+    opacity: 1;
+}
+.burger input:checked ~ nav ul li{
+    transition-delay: 0.1s;
+}
+body:has(input:checked) .container {
+    transform: translateX(300px);
+    transition-delay: 0.1s;
+}
+nav ul li a {
+    display: block;
+    padding: 20px 30px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+nav ul li a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 100%;
+    transition: width 0.3s ease;
+    z-index: -1;
+}
+
+
+nav ul li a:hover::before {
+    width: 100%;
+}

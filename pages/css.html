@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/css/hamburger.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"> 
+        <link rel="stylesheet" href="/static/css/styles.css">
+        <link rel="stylesheet" href="/static/css/css.css">
+        <title>DESARROLLO WEB: CSS</title>
+    </head>
+    <body>
+        <header>
+            <label class="burger" for="burger">
+                <input type="checkbox" id="burger">
+                <nav>
+                    <ul>
+                        <li><a href="./html.html">HTML</a></li>
+                        <li><a href="./js.html">JAVASCRIPT</a></li>
+                    </ul>
+                </nav>
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <ul>
+            <li><a href="/index.html">INICIO</a></li>
+            <li><a href="/pages/algoritmos.html">ALGORITMOS</a></li>
+            <li><a href="/pages/bd.html">BASE DE DATOS</a></li>
+            <li><a href="/pages/organizacion.html">ORGANIZACIÓN DE COMPUTADORAS</a></li>
+            <li title="Programación orientada a objetos"><a href="/poo.html">POO</a></li>
+            </ul>
+        </header>
+        <div class="container">
+        <h1>Proyecto informatico</h1>
+        </div>
+        <div class="section container" style="width: 80vw;">
+            <p>En el archivo principal <code>index.html</code>, hay que conectar el archivo .css en el <code>head</code>
+                para que hagan efecto los estilos.
+            </p>
+            <pre class="language-html"><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+    &lt;title&gt;Mi primer pagina&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Mi primer pagina&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        </div>
+        <div class="section">
+            <h1>BOX MODEL</h1>
+            <p>
+                Este modelo se usa para definir los espacios, las distancias entre elementos y que quede mas ordenado. 
+                El contenido podria ser un texto. El padding es la distancia que dejás entre el borde y el texto. Es hacia adentro.
+                Al borde se le define un grosor y color, que puede ser solido o degradado. Ejemplo:  <code>border: 1px solid black;</code><br>
+                El margin es la distancia que dejás entre el borde y los demás elementos. Es hacia afuera.<br><br>
+                <b style="font-size: large;">Podés probar interactuando con el modelo de caja de abajo para entenderlo mas visualmente.</b>
+            </p>
+            <div class="container">
+                <div class="margin-box">
+                    <span class="margin-label">MARGIN</span>
+                    <div class="border-box">
+                        <span class="border-label">BORDER</span>
+                        <div class="padding-box">
+                            <span class="padding-label">PADDING</span>
+                            <div class="content-box">
+                                <span class="content-label">CONTENT</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h1 style="border: 1px solid black; margin-left: 1em;" class="changable">MODIFICÁ EL ESTILO DE ESTE TITULO</h1>
+                    <div style="flex-direction: column;">
+                        <h4 style="margin-left: 55px;">Podés usar el siguiente formulario para modificar el box model con detalle</h2>
+                        <form style="padding-left: 2em;">
+                            <input type="text" name="padding" placeholder="PADDING" id="padding" value="50px"></input>
+                            <input type="text" name="margin" placeholder="MARGIN" id="margin" value="40px"></input>
+                            <input type="text" name="border" placeholder="BORDER" id="border" value="1px solid black"></input>
+                            <button type="submit">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <h1>FLEXBOX</h1>
+            <p>Para convertir un div en flexbox, se le agrega la propiedad <code>display: flex;</code><br> </p>
+            <img style="width: 100%; margin-bottom: 30px;" src="/static/images/estructura-flexblox.jpeg">
+
+            <div class="container-example" id="row">
+                <div class="element-example row">A</div>
+                <div class="element-example row">B</div>
+                <div class="element-example row">C</div>
+                <div class="element-example row">D</div>
+            </div>
+            <div class="properties" id="rowproperties">
+            </div>
+            <div class="container-example" id="column">
+                <div class="element-example column">A</div>
+                <div class="element-example column">B</div>
+                <div class="element-example column">C</div>
+                <div class="element-example column">D</div>
+            </div>
+            <div class="properties" id="columnproperties">
+            </div>
+        </div>
+        <script>
+            hljs.highlightAll();
+            let code = document.querySelector("pre code");
+            setTimeout(() => {
+                let children = code.children;
+                for(child in children) {
+                    if(["2","5","8"].includes(child)) {
+                        console.log(child);
+                        children[child].classList.add("highlight");
+                    }
+                }
+            }, 1000);
+        </script>
+        <script src="/static/js/css.js"></script>
+    </body>
+</html>

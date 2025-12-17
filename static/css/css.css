@@ -1,0 +1,35 @@
+.container-example {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    gap: 1rem;
+    border: #167afb solid 3px;
+    align-items: center;
+}
+.element-example {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(#3868f8, #7dd3fc);
+    text-align: center;
+    font-size: 3em;
+    color:black;
+    font-weight: bold;
+}
+.properties{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+.properties span {
+    font-weight: bold;
+    margin: 20px;
+}
+#row {
+    width: 80%;
+    height: 400px;
+}
+.row {
+    width: 120px;
+    height: 300px;
+}

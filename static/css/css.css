@@ -19,17 +19,17 @@
 .properties{
     display: flex;
     flex-direction: column;
-    margin: 20px;
+    margin: 10px;
 }
 .properties span {
     font-weight: bold;
     margin: 20px;
 }
 #row {
-    width: 80%;
+    width: 70%;
     height: 400px;
 }
 .row {
     width: 120px;
-    height: 300px;
+    height: 120px;
 }

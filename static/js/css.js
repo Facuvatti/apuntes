@@ -67,61 +67,83 @@ function animateProperty(element, property,original=undefined) {
     }
 }
 function flexboxProperties(containerSelector, propertiesSelector) {
-    let flexboxProperties = ["flex-direction", "justify-content", "align-items", "flex-wrap", "order", "flex-grow", "flex-shrink", "flex-basis"];
-    let container = document.querySelector(containerSelector);
-    for(let property of flexboxProperties) {
-        let div = document.createElement("div");
-        div.style.margin="10px"
-        let span = document.createElement("span");
-        span.textContent = property;
-        div.append(span);
-        if(property == "flex-direction") {
-            for(let direction of ["row", "row-reverse", "column", "column-reverse"]) {
-                let button = document.createElement("button");
-                button.textContent = direction;
-                button.addEventListener("click", () => {
-                    container.style[property] = direction;
-                });
-                div.append(button);
-            }
-        }
-        if(property == "justify-content") {
-            for(let direction of ["flex-start", "flex-end", "center", "space-between", "space-around", "space-evenly"]) {
-                let button = document.createElement("button");
-                button.textContent = direction;
-                button.addEventListener("click", () => {
-                    container.style[property] = direction;
-                });
-                div.append(button);
-            }
-        }
-        if(property == "align-items") {
-            for(let direction of ["flex-start", "flex-end", "center", "baseline", "stretch"]) {
-                let button = document.createElement("button");
-                button.textContent = direction;
-                button.addEventListener("click", () => {
-                    container.style[property] = direction;
-                });
-                div.append(button);
-            }
-        }
-        if(property == "flex-wrap") {
-            for(let direction of ["nowrap", "wrap", "wrap-reverse"]) {
-                let button = document.createElement("button");
-                button.textContent = direction;
-                button.addEventListener("click", () => {
-                    container.style[property] = direction;
-                });
-                div.append(button);
-            }
-        }
-        document.querySelector(propertiesSelector).append(div);
-
-        
-        
+    const container = document.querySelector(containerSelector);
+    const propertiesContainer = document.querySelector(propertiesSelector);
+    
+    const flexboxConfig = {
+        "flex-direction": ["row", "row-reverse", "column", "column-reverse"],
+        "justify-content": ["flex-start", "flex-end", "center", "space-between", "space-around", "space-evenly"],
+        "align-items": ["flex-start", "flex-end", "center", "baseline", "stretch"],
+        "gap" : ["0px", "10px", "50px","100px"]
+    };
+    const visibility = document.querySelector("#container-example");
+    for (let [property, values] of Object.entries(flexboxConfig)) {
+        const propertyDiv = createPropertyControl(property, values, container,visibility);
+        propertiesContainer.append(propertyDiv);
     }
 }
+
+function createPropertyControl(property, values, container,codeDisplay) {
+    const div = document.createElement("div");
+    div.style.margin = "5px";
+    
+    const span = document.createElement("span");
+    span.textContent = property;
+    div.append(span);
+    
+    values.forEach(value => {
+        const button = createButton(value, () => {
+            container.style[property] = value;
+            updateCodeDisplay(codeDisplay, property, value);
+        });
+        div.append(button);
+    });
+    
+    return div;
+}
+
+function createButton(text, onClick) {
+    const button = document.createElement("button");
+    button.textContent = text;
+    button.addEventListener("click", onClick);
+    return button;
+}
+/**
+ * Updates the CSS code display with the new property value
+ * @param {HTMLElement} codeElement - The <code> element to update
+ * @param {string} property - The CSS property to update
+ * @param {string} value - The new value for the property
+ */
+function updateCodeDisplay(codeElement, property, value) {
+    // Convert camelCase to kebab-case (e.g., flexDirection -> flex-direction)
+    const cssProperty = property.replace(/([A-Z])/g, '-$1').toLowerCase();
+    
+    // Escape special characters in the property name for use in regex
+    const escapedProperty = cssProperty.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    
+    // Remove existing highlights from previous updates
+    codeElement.innerHTML = codeElement.innerHTML.replace(
+        /<span class="highlight">([^<]*)<\/span>/g,
+        '$1'
+    );
+    
+    // Create regex pattern to find the property and its value
+    const regex = new RegExp(
+        `(<span class="hljs-attribute">${escapedProperty}</span>\\s*:\\s*)` +
+        `([^;\\n<]*(?:<span[^>]*>[^<]*<\\/span>[^;\\n<]*)*)` +
+        `(;?)`,
+        'gi'
+    );
+    
+    // Replace the matched pattern with the new value and add highlight
+    codeElement.innerHTML = codeElement.innerHTML.replace(
+        regex,
+        `$1<span class="highlight">${value}</span>$3`
+    );
+}
+
 flexboxProperties(".container-example", ".properties");
+
 // Agregar event listeners
 document.querySelectorAll('[class$="-box"]').forEach(box => {
     box.addEventListener("click", changeByClick);
